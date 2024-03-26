@@ -24,6 +24,7 @@ public class Reminder implements Serializable {
 
     @Override
     public String toString() {
+        //used to display actual contents of a reminder
         return title +
                 "\nDescription: " + description +
                 "\nDateTime: " + dateTime +
@@ -233,14 +234,14 @@ public class Reminder implements Serializable {
         }
     }
 
-    private static List<Reminder> readRemindersFromFile(){
+    protected static List<Reminder> readRemindersFromFile(){
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("reminder.txt"))){
             return (List<Reminder>) in.readObject();
         } catch (IOException | ClassNotFoundException e){
             return new ArrayList<>();
         }
     }
-        private static Reminder createReminder (Scanner scnr){
+        protected static Reminder createReminder (Scanner scnr){
             System.out.print("Enter the title of the reminder: ");
             String title = scnr.nextLine();
 
